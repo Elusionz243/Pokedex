@@ -1,0 +1,33 @@
+{
+  "name": "Pokedex",
+  "version": "1.0.0",
+  "description": "A website to practice my web-request and Promises.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "browserify": "^17.0.0",
+    "chai": "^4.2.0",
+    "live-server": "^1.2.1"
+  },
+  "devDependencies": {
+    "mocha": "^8.2.1"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elusionz243/Pokedex.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Elusionz243/Pokedex/issues"
+  },
+  "homepage": "https://github.com/Elusionz243/Pokedex#readme"
+}
