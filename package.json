@@ -16,8 +16,7 @@
     "mocha": "^8.2.1"
   },
   "scripts": {
-    "test": "mocha",
-    "start": "live-server"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",

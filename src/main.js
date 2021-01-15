@@ -2,10 +2,10 @@ const axios = require('axios');
 const { builtinModules } = require('module');
 const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
 
-const pokemonList = [];
 
 async function getPokemon() {
-  for (let i = 1; i < 20; i++) {
+  const pokemonList = [];
+  for (let i = 1; i < 4; i++) {
     const pokemon = await axios.get(`${BASE_URL}/${i}`);
     const { data } = pokemon;
     const { name, id, height, weight, stats, sprites, base_experience } = data;
@@ -28,8 +28,15 @@ async function getPokemon() {
     };
     pokemonList.push(pokemonInfo);
   }
-  console.log(pokemonList);
+  // console.log(pokemonList);
   return pokemonList;
+}
+
+async function getPokemonNames(){
+  const pokemonList = await getPokemon();
+  const pokemonNames = pokemonList.map(({ name }) => name);
+  // console.log(pokemonNames);
+  return pokemonNames;
 }
 
 function getPokemonInfo() {
@@ -41,6 +48,7 @@ function addPokemonToWebsite(){
 }
 
 getPokemon();
-addPokemonToWebsite();
+getPokemonNames();
+// addPokemonToWebsite();
 
-module.exports = { addPokemonToWebsite, getPokemon };
+module.exports = { addPokemonToWebsite, getPokemon, getPokemonNames };
