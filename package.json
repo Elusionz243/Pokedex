@@ -9,14 +9,16 @@
   "dependencies": {
     "axios": "^0.21.1",
     "browserify": "^17.0.0",
-    "chai": "^4.2.0",
-    "live-server": "^1.2.1"
+    "live-server": "^1.2.1",
+    "parcel-bundler": "^1.12.4"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "mocha": "^8.2.1"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "parcel index.html"
   },
   "repository": {
     "type": "git",
@@ -28,5 +30,8 @@
   "bugs": {
     "url": "https://github.com/Elusionz243/Pokedex/issues"
   },
-  "homepage": "https://github.com/Elusionz243/Pokedex#readme"
+  "homepage": "https://github.com/Elusionz243/Pokedex#readme",
+  "browserslist": [
+    "last 1 Chrome version"
+  ]
 }
