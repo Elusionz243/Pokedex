@@ -40,8 +40,14 @@ function getPokemonInfo() {
   return axios.get(`${BASE_URL}/1`).then(({ data }) => console.log(data));
 }
 
-function addPokemonToWebsite(){
-  document.getElementById('pokemon-name').innerHTML = pokemonList[0].name;
+async function addPokemonToWebsite(){
+  await getPokemon();
+  document.getElementById('pokemon-image').src = pokemonList[0].frontImage;
+  document.getElementById('pokemon-name').innerHTML = 'Name: ' + pokemonList[0].name;
+  document.getElementById('pokemon-id').innerHTML = 'ID: ' + pokemonList[0].id;
+  document.getElementById('pokemon-height').innerHTML = 'Height: ' + pokemonList[0].height;
+  document.getElementById('pokemon-weight').innerHTML = 'Weight: ' + pokemonList[0].weight;
+  document.getElementById('pokemon-basestats').innerHTML = 'baseStats: ' + pokemonList[0].baseStats[0];
 }
 
 module.exports = { getPokemon, getPokemonNames, getPokemonInfo, addPokemonToWebsite };

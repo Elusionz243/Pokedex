@@ -1917,14 +1917,8 @@ module.exports.default = axios;
 
 },{"./utils":"node_modules/axios/lib/utils.js","./helpers/bind":"node_modules/axios/lib/helpers/bind.js","./core/Axios":"node_modules/axios/lib/core/Axios.js","./core/mergeConfig":"node_modules/axios/lib/core/mergeConfig.js","./defaults":"node_modules/axios/lib/defaults.js","./cancel/Cancel":"node_modules/axios/lib/cancel/Cancel.js","./cancel/CancelToken":"node_modules/axios/lib/cancel/CancelToken.js","./cancel/isCancel":"node_modules/axios/lib/cancel/isCancel.js","./helpers/spread":"node_modules/axios/lib/helpers/spread.js","./helpers/isAxiosError":"node_modules/axios/lib/helpers/isAxiosError.js"}],"node_modules/axios/index.js":[function(require,module,exports) {
 module.exports = require('./lib/axios');
-},{"./lib/axios":"node_modules/axios/lib/axios.js"}],"node_modules/parcel-bundler/src/builtins/_empty.js":[function(require,module,exports) {
-
-},{}],"src/main.js":[function(require,module,exports) {
+},{"./lib/axios":"node_modules/axios/lib/axios.js"}],"src/pokemonGenerator.js":[function(require,module,exports) {
 const axios = require('axios');
-
-const {
-  builtinModules
-} = require('module');
 
 const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
 const pokemonList = [];
@@ -1963,16 +1957,13 @@ async function getPokemon() {
     pokemonList.push(pokemonInfo);
   }
 
-  console.log(pokemonList);
   return pokemonList;
 }
 
 async function getPokemonNames() {
-  const pokemonList = await getPokemon();
   const pokemonNames = pokemonList.map(({
     name
   }) => name);
-  console.log(pokemonNames);
   return pokemonNames;
 }
 
@@ -1982,22 +1973,29 @@ function getPokemonInfo() {
   }) => console.log(data));
 }
 
-function addPokemonToWebsite() {
-  document.getElementById('pokemon-name').innerHTML = pokemonList[0].name; // document.getElementById('pokemon-name').innerHTML = pokemonList[0].name;
+async function addPokemonToWebsite() {
+  await getPokemon();
+  document.getElementById('pokemon-image').src = pokemonList[0].frontImage;
+  document.getElementById('pokemon-name').innerHTML = 'Name: ' + pokemonList[0].name;
+  document.getElementById('pokemon-id').innerHTML = 'ID: ' + pokemonList[0].id;
+  document.getElementById('pokemon-height').innerHTML = 'Height: ' + pokemonList[0].height;
+  document.getElementById('pokemon-weight').innerHTML = 'Weight: ' + pokemonList[0].weight;
+  document.getElementById('pokemon-basestats').innerHTML = 'baseStats: ' + pokemonList[0].baseStats[0];
 }
 
-getPokemon(); // getPokemonNames();
-// addPokemonToWebsite();
+module.exports = {
+  getPokemon,
+  getPokemonNames,
+  getPokemonInfo,
+  addPokemonToWebsite
+};
+},{"axios":"node_modules/axios/index.js"}],"src/main.js":[function(require,module,exports) {
+const pokemonGenerator = require('./pokemonGenerator.js');
 
 document.querySelector('#pokemons').addEventListener('click', () => {
-  addPokemonToWebsite();
+  pokemonGenerator.addPokemonToWebsite();
 });
-module.exports = {
-  addPokemonToWebsite,
-  getPokemon,
-  getPokemonNames
-};
-},{"axios":"node_modules/axios/index.js","module":"node_modules/parcel-bundler/src/builtins/_empty.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./pokemonGenerator.js":"src/pokemonGenerator.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -2025,7 +2023,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51769" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54541" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
